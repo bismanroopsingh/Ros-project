@@ -3,8 +3,7 @@ project(hospital_robot_description)
 
 find_package(ament_cmake REQUIRED)
 
-install(
-  DIRECTORY urdf meshes worlds launch config maps
+install(DIRECTORY launch config urdf worlds maps meshes
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -14,5 +13,9 @@ install(
     scripts/pd_teleop.py
   DESTINATION lib/${PROJECT_NAME}
 )
-
+install(PROGRAMS
+  scripts/cmd_vel_relay.py
+  scripts/recovery_helper.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 ament_package()

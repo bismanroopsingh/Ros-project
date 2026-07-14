@@ -12,7 +12,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         TimerAction(
-            period=20.0,    # wait 20s for Gazebo + robot + AMCL to fully start
+            period=20.0,
             actions=[
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(

@@ -479,7 +479,7 @@
   <!-- Cylinder r=0.060 l=0.180  [×0.6]                            -->
   <!-- Joint origin: x=0.360 z=0.495  [lidar_mount 0.360,0,0.435 + 0.060 above] -->
   <!-- Mass ×0.216: 12.5×0.216=2.7  Inertia ×0.07776: 0.3125×0.07776=0.02430  -->
-  <link name="lidar_link">
+  <!-- <link name="lidar_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry><cylinder radius="0.060" length="0.180"/></geometry>
@@ -495,6 +495,20 @@
       <inertia ixx="0.02430" ixy="0" ixz="0"
                iyy="0.02430" iyz="0"
                izz="0.02430"/>
+    </inertial>
+  </link> -->
+  <link name="lidar_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.060" length="0.180"/></geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <mass value="2.7"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.02430" ixy="0" ixz="0"
+              iyy="0.02430" iyz="0"
+              izz="0.02430"/>
     </inertial>
   </link>
   <joint name="lidar_joint" type="fixed">
