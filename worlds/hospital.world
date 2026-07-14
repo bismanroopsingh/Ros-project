@@ -501,7 +501,7 @@
     </model>
 
     <!-- Medicine box on floor -->
-    <model name="medicine_box">
+    <!-- <model name="medicine_box">
       <static>true</static><pose>-2 1.5 0.15 0 0 0</pose>
       <link name="link">
         <collision name="col"><geometry><box><size>0.3 0.3 0.3</size></box></geometry></collision>
@@ -509,7 +509,7 @@
           <material><ambient>1.0 0.3 0.3 1</ambient><diffuse>1.0 0.3 0.3 1</diffuse></material>
         </visual>
       </link>
-    </model>
+    </model> -->
 
     <!-- Wheelchair parked -->
     <model name="wheelchair">
@@ -560,7 +560,7 @@
     <!-- ===== DYNAMIC ACTORS ===== -->
 
     <!-- Actor 1: Roamer in main corridor (stationary) -->
-    <actor name="roamer_1">
+    <!-- <actor name="roamer_1">
       <pose>-3 0 0 0 0 0</pose>
       <skin>
         <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/stand.dae</filename>
@@ -638,7 +638,7 @@
           <pose>0 0 0.9 0 0 0</pose>
         </collision>
       </link>
-    </actor>
+    </actor> -->
 
   </world>
 </sdf>
