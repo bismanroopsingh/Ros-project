@@ -47,7 +47,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    # ── FIX 3: publishes joint states for caster joints (undriven) ──
     joint_state_publisher = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
@@ -68,12 +67,12 @@ def generate_launch_description():
             '/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
             '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
             '/model/hospital_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',
-            # FIX 2: [ means IGN→ROS only, prevents TF loop
             '/joint_states@sensor_msgs/msg/JointState[ignition.msgs.Model',
         ],
         output='screen'
     )
-    Node(
+
+    ekf_node = Node(
         package='robot_localization',
         executable='ekf_node',
         name='ekf_filter',
@@ -83,8 +82,22 @@ def generate_launch_description():
             'odom_frame': 'odom',
             'base_link_frame': 'base_link',
             'world_frame': 'odom',
-            'publish_tf': True
+            'publish_tf': True,
+            'two_d_mode': True,
+            'odom0': '/odom',
+            'odom0_config': [True,  True,  False,
+                              False, False, True,
+                              False, False, False,
+                              False, False, True,
+                              False, False, False],
         }]
+    )
+
+    cmd_vel_relay = Node(
+        package='hospital_robot_description',
+        executable='cmd_vel_relay.py',
+        name='cmd_vel_relay',
+        output='screen'
     )
 
     spawn_robot = TimerAction(
@@ -109,7 +122,9 @@ def generate_launch_description():
         set_ign_resource_path,
         gz_sim,
         robot_state_publisher,
-        joint_state_publisher,   # FIX 3
+        joint_state_publisher,
+        ekf_node,
         bridge,
+        cmd_vel_relay,
         spawn_robot,
     ])
